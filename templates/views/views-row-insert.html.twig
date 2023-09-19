@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Default theme implementation to output a Views Row Insert display style plugin.
+ *
+ * Available variables:
+ * - rows_insert: A list of processed row items by Views Row Insert plugin.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - rows: A list of the view's original row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - use_plugin: A flag for plugin usage
+ *
+ * @ingroup themeable
+ */
+#}
+{% if use_plugin %}
+  {% set rows = rows_insert %}
+{% endif %}
+{% for row in rows %}
+  <div{{ row.attributes }}>
+    {% if row.content | raw == "all_products" %}
+      {#view.args:
+        0 returns brand name
+        1 returns section
+      #}
+      <a href="{{view.args.0}}/all" class="text-light text-decoration-none"><div class="bg-secondary p-3 m-1 border rounded fw-bold">All Products</div></a>
+    {% else %}
+      {{ row.content | raw }}
+    {% endif %}
+  </div>
+{% endfor %}
+

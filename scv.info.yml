@@ -1,0 +1,8 @@
+name: SCV Theme
+type: theme
+core_version_requirement: ^9 || ^10
+description: Bootstrap powered ecommerce theme
+base theme: bootstrap5
+libraries:
+  - scv/global-styling
+  - scv/global-js

@@ -1,0 +1,9 @@
+global-styling:
+  css:
+    base:
+      dist/style.css: {}
+
+global-js:
+  version: '1.0.1'
+  js:
+    dist/scv.js: {}

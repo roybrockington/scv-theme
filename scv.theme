@@ -1,0 +1,145 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the SCV theme
+ */
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\views\Form\ViewsForm;
+
+/**
+ * Preprocess variables for html templates
+ * @param $variables
+ * @param $hook
+ */
+
+/**
+ * Implements hook_preprocess_page_title()
+ */
+
+function scv_preprocess_field__field_header_image(&$variables)
+{
+  $entity = $variables['element']['#object'];
+  $variables['node_title'] = $entity->getTitle();
+}
+
+function scv_preprocess_field__media__blog_header(&$variables)
+{
+  $entity = $variables['element']['#object'];
+  $variables['background_image_url'] = $entity->get('field_media_image_2')->entity->filename->value;
+  $variables['public_folder'] = \Drupal\Core\StreamWrapper\PublicStream::basePath();
+
+  $node = \Drupal::request()->attributes->get('node');
+  $variables['page_title'] = $node->getTitle();
+}
+
+/**
+ * Implements hook_preprocess_page()
+ * Displays h1 title element only for Basic Page content types
+ */
+function scv_preprocess_page(&$vars) {
+  if (isset($vars['node'])) {
+    if ($vars['node']->getType() == "page") {
+      $vars['show_title'] = true;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_field()
+ * Product hero header image + main title
+ */
+
+function scv_preprocess_field__media__hero_header(&$variables)
+{
+  $entity = $variables['element']['#object'];
+  $variables['background_image_url'] = $entity->get('field_media_image_3')->entity->filename->value;
+  $variables['public_folder'] = \Drupal\Core\StreamWrapper\PublicStream::basePath();
+  $product = \Drupal::routeMatch()->getParameter('commerce_product');
+  if($product) {
+    $brand = $product->get('field_brand')->entity->getTitle();
+    $variables['brand'] = $brand;
+    $request = \Drupal::request();
+    $route_match = \Drupal::routeMatch();
+    $variables['page_title'] = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_field()
+ * Show discontinued brand and disabled theme description
+ */
+
+function scv_preprocess_field__node__body__brand(&$vars)
+{
+  $node = \Drupal::request()->attributes->get('node');
+  $discontinued = $node->get('field_discontinued')->value;
+//  $variables['discontinued'] = $discontinued;
+  if ($discontinued) {
+    $vars['attributes']['class'][] = 'text-muted';
+    $vars['items'][0]['content']['discontinued'] = [
+      "#type" => "markup",
+      "#markup" => t('<div class="my-2"><h5 class="text-danger">This range is no longer available</h5><p class="text-black">Please call 03301 222500 for further information.</p></div>'),
+      "#weight" => -999,
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_block()
+ * Remove heading from exposed form block
+ */
+
+function scv_preprocess_block(&$vars) {
+  if ($vars['content']['#id'] = 'views-exposed-form-product-search-page-1') {
+    $vars['label'] = [];
+  }
+}
+
+
+
+function scv_preprocess_block__scv_branding(&$vars) {
+  $current_uri = \Drupal::request()->getRequestUri();
+  $section = explode("/", $current_uri);
+//  $vars['#cache']['max-age'] = 0;
+//  $vars['section'] = $section[1];
+}
+
+/**
+ * Implements hook_preprocess_field()
+ * Override blog body image to add padding
+ */
+
+function scv_preprocess_media__blog_image(&$vars) {
+  $vars['attributes']['class'][] = 'my-3';
+}
+
+
+/**
+ * Implements hook_form_alter()
+ * Adds header text to contact form
+ */
+
+function scv_form_alter(&$form, &$form_state, $form_id) {
+  if($form_id == 'webform_submission_scv_contact_add_form') {
+    $form['#attributes']['class'][] = 'p-4';
+    $form['text_header'] = [
+        '#prefix' => '<h4 class="mt-2">',
+        '#suffix' => '</h4>',
+        '#markup' => t('Drop us a line'),
+        '#weight' => -99
+    ];
+        $form['divider'] = [
+        '#markup' => t('<hr/>'),
+        '#weight' => -101
+    ];
+  }
+}
+
+function scv_preprocess_block__contactheader(&$vars) {
+  $vars['attributes']['class'][] = 'mt-3';
+}
