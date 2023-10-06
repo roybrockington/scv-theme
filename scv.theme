@@ -95,8 +95,10 @@ function scv_preprocess_field__node__body__brand(&$vars)
  */
 
 function scv_preprocess_block(&$vars) {
-  if ($vars['content']['#id'] = 'views-exposed-form-product-search-page-1') {
-    $vars['label'] = [];
+  if (isset($vars['content']['#id'])) {
+    if ($vars['content']['#id'] == 'views-exposed-form-product-search-page-1') {
+      $vars['label'] = [];
+    }
   }
 }
 
