@@ -35,7 +35,7 @@
 
 
 /**
- * Front page #1f1013 
+ * Front page #1f1013
  */
 
 .backdrop-front {
@@ -631,10 +631,10 @@ img.social {
 
 /**
  * Remove paypal bypass button
- */
 #edit-checkout {
   display: none;
 }
+ */
 
 
 /**
