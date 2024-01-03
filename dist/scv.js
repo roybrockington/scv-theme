@@ -25,6 +25,7 @@ const thisUrl = window.location.pathname;
 const urlArr = thisUrl.split("/")
 const section = urlArr[1] // home-audio
 const sectionLink = document.getElementById(section+"-link")
+console.log(sectionLink)
 if(sectionLink) {
   sectionLink.classList.add("scv-highlight") // add border
 }

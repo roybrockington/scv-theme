@@ -547,7 +547,7 @@ img.social {
 }
 
 .scv-highlight {
-  border: 1px solid #666;
+  border: 1px solid #666 !important;
   border-radius: 10px;
 }
 
