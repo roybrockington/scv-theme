@@ -416,7 +416,7 @@ div.view-algolia > div > div > div > div {
 }
 
 
-.view-product-search>div>h2, .view-categorised-products>div>h2, .block-views-blockrelated-categories-block-1 > h2, .block-views-blockrelated-articles-block-1 > h2, .block-views-blockrelated-articles-block-2 > h2, .block-views-blockrelated-products-block-1 > h2, .block-views-blockrelated-products-block-2 > h2{
+.view-algolia.view-product-search>div>h2, .view-categorised-products>div>h2, .block-views-blockrelated-categories-block-1 > h2, .block-views-blockrelated-articles-block-1 > h2, .block-views-blockrelated-articles-block-2 > h2, .block-views-blockrelated-products-block-1 > h2, .block-views-blockrelated-products-block-2 > h2{
   border-bottom: 1px solid #ddd;
 }
 
