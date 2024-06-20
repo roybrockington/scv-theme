@@ -411,7 +411,7 @@ label.option {
 div.view-related-products > div > div > div > div {
   overflow: hidden;
 }
-div.view-product-search > div > div > div > div {
+div.view-algolia > div > div > div > div {
   overflow: hidden;
 }
 
@@ -596,6 +596,9 @@ img.social {
  * Search box / page formatting
  */
 #views-exposed-form-product-search-page-1 > div.clearfix {
+  display: flex;
+}
+#views-exposed-form-algolia-page-1 > div.clearfix {
   display: flex;
 }
 

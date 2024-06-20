@@ -23,7 +23,7 @@ use Drupal\views\Form\ViewsForm;
 function scv_preprocess_field__field_header_image(&$variables)
 {
   $entity = $variables['element']['#object'];
-  $variables['node_title'] = $entity->getTitle();
+//  $variables['node_title'] = $entity->getTitle();
 }
 
 function scv_preprocess_field__media__blog_header(&$variables)
@@ -97,6 +97,9 @@ function scv_preprocess_field__node__body__brand(&$vars)
 function scv_preprocess_block(&$vars) {
   if (isset($vars['content']['#id'])) {
     if ($vars['content']['#id'] == 'views-exposed-form-product-search-page-1') {
+      $vars['label'] = [];
+    }
+    if ($vars['content']['#id'] == 'views-exposed-form-algolia-page-1') {
       $vars['label'] = [];
     }
   }
