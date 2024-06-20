@@ -41,7 +41,7 @@ const displayDate = () => {
 }
 
 // Halt searches with less than 2 characters
-const productSearch = document.getElementById('views-exposed-form-product-search-page-1')
+const productSearch = document.getElementById('views-exposed-form-algolia-page-1')
 const searchBox = document.getElementById('edit-term')
 const searchField = document.getElementsByName('term')
 console.log(searchField)
