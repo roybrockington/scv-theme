@@ -444,7 +444,6 @@ div.view-algolia > div > div > div > div {
 
 blockquote {
   text-align: center;
-  /*quotes: "\201C""\201D""\2018""\2019";*/
   quotes: "\201C""\201D""\2018""\2019";
 }
 
@@ -632,14 +631,6 @@ img.social {
 }
 
 /**
- * Remove paypal bypass button
-#edit-checkout {
-  display: none;
-}
- */
-
-
-/**
  * Map tooltip size
  */
 .leaflet-popup-content {
@@ -653,58 +644,6 @@ img.social {
 
 .location-indent {
   margin-left: 2.5rem !important;
-}
-
-/**
- * GDPR cookie bar
- */
-
-.eu-cookie-compliance-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-}
-.eu-cookie-compliance-buttons {
-  margin: unset !important;
-}
-
-.eu-cookie-compliance-secondary-button {
-  background-color: white !important;
-  font-size: 120% !important;
-}
-.eu-cookie-compliance-secondary-button:hover {
-  background-color: #ddd !important;
-  font-size: 120% !important;
-}
-.eu-cookie-compliance-default-button {
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  text-shadow: none;
-  color: white !important;
-}
-.eu-cookie-compliance-default-button:hover {
-  background: transparent;
-}
-
-#sliding-popup {
-  background-color: dimgray !important;
-  opacity: 0.9;
-}
-
-@media (max-width: 768px)
-{
-  .eu-cookie-compliance-secondary-button, .eu-cookie-compliance-default-button {
-    margin: unset !important;
-  }
-  .eu-cookie-compliance-message {
-    padding-right: 10px;
-  }
-  .eu-cookie-compliance-default-button {
-    margin-top: 15px !important;
-    border:1px solid #ddd;
-  }
 }
 
 
