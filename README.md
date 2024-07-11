@@ -2,11 +2,11 @@
 Custom Twig theme designed for Drupal 9+ powered by Bootstrap
 
 ## Install using drush
-First install the Bootstrap theme module
+First install the Bootstrap theme module:
 ```
 composer require 'drupal/bootstrap5:^4.0'
 ```
-Then clone scv-theme to `{your_d10_project}/themes/custom/scv
+Then clone scv-theme to **{ your_d10_project }/themes/custom/scv**
 
 Activate both themes using drush + UI:
 ```
