@@ -646,6 +646,13 @@ img.social {
   margin-left: 2.5rem !important;
 }
 
+/**
+ * Map attachment sizing fix
+ */
+.view-display-id-attachment_2 {
+  min-height:500px;
+  min-width: 300px;
+}
 
 
 /**

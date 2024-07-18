@@ -25,36 +25,77 @@ const thisUrl = window.location.pathname;
 const urlArr = thisUrl.split("/")
 const section = urlArr[1] // home-audio
 const sectionLink = document.getElementById(section+"-link")
-console.log(sectionLink)
 if(sectionLink) {
   sectionLink.classList.add("scv-highlight") // add border
 }
 
 
-
-// Highlight corresponding attachment entry
-
-//const thisMarker = document.getElementById('marker').addEventListener("click", displayDate);
-
-const displayDate = () => {
-  console.log(thisMarker)
-}
-
 // Halt searches with less than 2 characters
 const productSearch = document.getElementById('views-exposed-form-algolia-page-1')
 const searchBox = document.getElementById('edit-term')
 const searchField = document.getElementsByName('term')
-console.log(searchField)
 if (productSearch) {
   productSearch.onsubmit = e => {
     e.preventDefault()
-    const searchQuery = event.target[0].value
-    console.log(searchQuery + ' ' + searchQuery.length)
+    const searchQuery = e.target[0].value
     if (searchQuery.length < 2) {
       searchField[0].classList.add('is-invalid')
     } else {
-      console.log('search seems fine')
       productSearch.submit()
     }
   }
 }
+
+
+
+(function ($, Drupal) { // map attachment interaction
+
+  'use strict';
+
+  Drupal.behaviors.geofieldMapLeafletMapInteraction = {
+    attach: function (context, settings) {
+
+        $(document).on('leaflet.map', (e, settings, lMap, mapid) => {
+          const map = lMap;
+          const markers = Drupal.Leaflet[mapid].markers;
+
+          $('.view-display-id-attachment_2 .views-field .marker-selector', context).each(function () {
+            $(this).hover(
+              function() {
+                $(this).css("background", "lightgray");
+                let marker_id = $(this).data('marker-id');
+                setTimeout(function () {
+                  if(markers[marker_id]) {
+                    map.setView(markers[marker_id].getLatLng(), '15');
+                    markers[marker_id].fire('click');
+                  }
+                }, 500);
+              }, function() {
+                $(this).css("background", "white");
+                setTimeout(function () {
+                  map.closePopup();
+                }, 200);
+              }
+            );
+          });
+
+          $('.view-display-id-attachment_2', context).each(function () {
+            let timeoutId;
+            $(this).hover(
+              function() {
+              }, function() {
+                $( this ).css("text-decoration", "none");
+                timeoutId = setTimeout(function () {
+                  map.closePopup();
+                  $('#' + 'leaflet-map--' + mapid + '--reset-control').click();
+                  Drupal.Leaflet.prototype.map_reset(mapid);
+                }, 2000);
+              }
+            );
+          });
+      });
+    }
+  };
+
+})(jQuery, Drupal);
+
